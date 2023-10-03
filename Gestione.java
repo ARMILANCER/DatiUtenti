@@ -51,16 +51,21 @@ public class Gestione {
         StringBuilder mail = new StringBuilder();
         // contain the bytes of the file 'MP.dat'
         byte[] data = new byte[MAX_LENGTH_RECORD];
+        byte record = 0;
         // subByte -> contain a range of bytes read in the cycle while
         int subByte;
+        // save length of mail name
+        int lastByteMail;
         try(RandomAccessFile raf = new RandomAccessFile(mailPosition,"r")){
             while((subByte = raf.read(data))!=-1){
                 for(int i=0;i<subByte;i++){
                     if(data[i] != '\0'){
-                        mail.append(new String(data,"UTF-8"));
+                        record += data[i];
+                        lastByteMail = i;
+                    }else{
+                        i = 81;
                     }
                 }
-                System.out.println();
             }
         }catch (IOException e){
             e.printStackTrace();
