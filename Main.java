@@ -1,8 +1,18 @@
 package Preparazione;
 
+import java.io.*;
+
 public class Main {
-    BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
-    public static void main(String[] args) {
-        System.out.println("Mail>_<??");
+    private static BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+    private static Gestione gestione = new Gestione();
+    private static String mail;
+    public static void main(String [] args){
+        try {
+            gestione.addAccount("arcotangente.1.17@");
+            gestione.fillMail();
+            mail = buff.readLine();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
